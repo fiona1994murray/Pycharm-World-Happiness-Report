@@ -6,6 +6,11 @@ import seaborn as sns
 df = pd.read_csv("world-happiness-report-2021.csv")
 print(df.head())
 
+df_past = pd.read_csv("world-happiness-report.past.csv")
+print(df_past.head())
+
+
+
 # Analysing data
 
 print(df.info())
@@ -18,20 +23,20 @@ print(df.describe())
 
 print(df.dtypes)
 
-# Replace missing values or dropping duplicates.
+# Replace missing values or dropping duplicates
 def df_prep(path):
     new_df = pd.read_csv(path)
     new_df.drop_duplicates(inplace=True)
     new_df.fillna("Unknown", inplace=True)
     print(new_df)
 
+
+# Looping, iterrows
 for index, row in df.iterrows():
     print(str(row["Regional indicator"]).split(',')[0])
 
-# Looping, iterrows
 print(df.columns)
 print(df["Regional indicator"].value_counts())
-
 
 # Regional Insights
 print(df.groupby('Regional indicator')['Ladder score'].mean().reset_index().sort_values('Ladder score'))
@@ -39,3 +44,11 @@ print(df.groupby('Regional indicator')['Ladder score'].mean().reset_index().sort
 print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita', 'Social support', 'Healthy life expectancy',
                                   'Freedom to make life choices', 'Generosity',
                                   'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
+
+
+merged = pd.concat([df, df_past], axis=0, sort=False)
+print(merged.head())
+
+inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
+print(inner_merge)
+
