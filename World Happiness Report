@@ -5,4 +5,12 @@ import seaborn as sns
 df = pd.read_csv("world-happiness-report-2021.csv")
 print(df.head())
 
+print(df.info())
+
+df.index
+
+df.set_index('Country name')
+
+
+
 
