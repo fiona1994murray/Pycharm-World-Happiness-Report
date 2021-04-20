@@ -49,11 +49,21 @@ print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita',
                                   'Freedom to make life choices', 'Generosity',
                                   'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
 
-# Top ranking happiest countries
+# Dict Top ranking happiest countries
 
 Top3 = {"Country name":["Finland", "Denmark", "Switzerland"], "Ladder score":[7.842, 7.620, 7.571]}
 Top_Ranking = pd.DataFrame(Top3)
 print(Top_Ranking)
+
+
+
+
+plt.figure(figsize=(15,20))
+sns.relplot(x="Perceptions of corruption", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=1.5, palette='rocket', s=110);
+plt.title("Happiness score vs Perceptions of corruption", fontsize="15")
+plt.show()
+
 
 
 
