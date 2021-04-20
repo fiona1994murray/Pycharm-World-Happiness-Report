@@ -49,6 +49,12 @@ print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita',
                                   'Freedom to make life choices', 'Generosity',
                                   'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
 
+# Happiness by Region - Bar plot
+sns.set_color_codes("pastel")
+sns.barplot(x="Ladder score", y="Regional indicator", data=df, palette="rocket")
+plt.title("Happiness by Region")
+plt.show()
+
 # Dict Top ranking happiest countries
 
 Top3 = {"Country name":["Finland", "Denmark", "Switzerland"], "Ladder score":[7.842, 7.620, 7.571]}
@@ -78,5 +84,11 @@ sns.scatterplot(x="Healthy life expectancy", y="Ladder score", hue="Regional ind
 plt.title("Happiness vs Healthy Life Expectancy", fontsize="15")
 plt.show()
 
+# Figure 4: Correlation Happiness vs Social Support
+plt.figure(figsize=(15,20))
+sns.scatterplot(x="Social support", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110)
+plt.title("Happiness vs Social support", fontsize="15")
+plt.show()
 
 
