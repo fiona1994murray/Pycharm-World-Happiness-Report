@@ -18,7 +18,7 @@ print(df.dtypes)
 def df_prep(path):
     new_df = pd.read_csv(path)
     new_df.drop_duplicates(inplace=True)
-    new_df.fillna("Unkown", inplace=True)
+    new_df.fillna("Unknown", inplace=True)
 
 
 
