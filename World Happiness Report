@@ -7,9 +7,20 @@ print(df.head())
 
 print(df.info())
 
-df.index
+print(df.index)
 
-df.set_index('Country name')
+print(df.set_index("Country name"))
+
+print(df.describe())
+
+print(df.dtypes)
+
+def df_prep(path):
+    new_df = pd.read_csv(path)
+    new_df.drop_duplicates(inplace=True)
+    new_df.fillna("Unkown", inplace=True)
+
+
 
 
 
