@@ -18,7 +18,7 @@ print(df.describe())
 
 print(df.dtypes)
 
-
+# Replace missing values or dropping duplicates.
 def df_prep(path):
     new_df = pd.read_csv(path)
     new_df.drop_duplicates(inplace=True)
@@ -28,9 +28,14 @@ def df_prep(path):
 for index, row in df.iterrows():
     print(str(row["Regional indicator"]).split(',')[0])
 
+# Looping, iterrows
 print(df.columns)
 print(df["Regional indicator"].value_counts())
 
-# The Happiest Countries in 2021
 
+# Regional Insights
+print(df.groupby('Regional indicator')['Ladder score'].mean().reset_index().sort_values('Ladder score'))
 
+print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita', 'Social support', 'Healthy life expectancy',
+                                  'Freedom to make life choices', 'Generosity',
+                                  'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
