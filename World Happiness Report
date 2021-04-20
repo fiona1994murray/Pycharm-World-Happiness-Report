@@ -52,3 +52,6 @@ print(merged.head())
 inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
 print(inner_merge)
 
+
+
+
