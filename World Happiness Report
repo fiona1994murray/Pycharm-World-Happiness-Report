@@ -35,6 +35,10 @@ def df_prep(path):
 for index, row in df.iterrows():
     print(str(row["Regional indicator"]).split(',')[0])
 
+# Merge DataFrames
+inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
+print(inner_merge)
+
 print(df.columns)
 print(df["Regional indicator"].value_counts())
 
@@ -46,11 +50,6 @@ print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita',
                                   'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
 
 
-merged = pd.concat([df, df_past], axis=0, sort=False)
-print(merged.head())
-
-inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
-print(inner_merge)
 
 
 
