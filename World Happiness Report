@@ -2,8 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Import a CSV file into a Pandas DataFrame
 df = pd.read_csv("world-happiness-report-2021.csv")
 print(df.head())
+
+# Analysing data
 
 print(df.info())
 
@@ -15,13 +18,19 @@ print(df.describe())
 
 print(df.dtypes)
 
+
 def df_prep(path):
     new_df = pd.read_csv(path)
     new_df.drop_duplicates(inplace=True)
     new_df.fillna("Unknown", inplace=True)
+    print(new_df)
 
+for index, row in df.iterrows():
+    print(str(row["Regional indicator"]).split(',')[0])
 
+print(df.columns)
+print(df["Regional indicator"].value_counts())
 
-
+# The Happiest Countries in 2021
 
 
