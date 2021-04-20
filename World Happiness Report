@@ -57,14 +57,26 @@ print(Top_Ranking)
 
 
 
-
+# Figure 1: Correlation Happiness vs Perceptions of corruption
 plt.figure(figsize=(15,20))
-sns.relplot(x="Perceptions of corruption", y="Ladder score", hue="Regional indicator", data=df
-            , alpha=1.5, palette='rocket', s=110);
-plt.title("Happiness score vs Perceptions of corruption", fontsize="15")
+sns.scatterplot(x="Perceptions of corruption", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110);
+plt.title("Happiness vs Perceptions of Corruption", fontsize="15")
 plt.show()
 
+# Figure 2: Correlation Happiness vs Freedom To Make Life Choices
+plt.figure(figsize=(15,20))
+sns.scatterplot(x="Freedom to make life choices", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110)
+plt.title("Happiness vs Freedom To Make Life Choices", fontsize="15")
+plt.show()
 
+# Figure 3: Correlation Happiness vs Healthy Life Expectancy
+plt.figure(figsize=(15,20))
+sns.scatterplot(x="Healthy life expectancy", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110)
+plt.title("Happiness vs Healthy Life Expectancy", fontsize="15")
+plt.show()
 
 
 
