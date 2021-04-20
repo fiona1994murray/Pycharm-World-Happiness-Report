@@ -39,17 +39,21 @@ for index, row in df.iterrows():
 inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
 print(inner_merge)
 
+# Regional Insights
 print(df.columns)
 print(df["Regional indicator"].value_counts())
 
-# Regional Insights
 print(df.groupby('Regional indicator')['Ladder score'].mean().reset_index().sort_values('Ladder score'))
 
 print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita', 'Social support', 'Healthy life expectancy',
                                   'Freedom to make life choices', 'Generosity',
                                   'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
 
+# Top ranking happiest countries
 
+Top3 = {"Country name":["Finland", "Denmark", "Switzerland"], "Ladder score":[7.842, 7.620, 7.571]}
+Top_Ranking = pd.DataFrame(Top3)
+print(Top_Ranking)
 
 
 
