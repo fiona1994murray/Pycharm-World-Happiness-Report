@@ -2,6 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from bokeh.io import output_file, show
+from bokeh.plotting import figure
+from bokeh.models import ColumnDataSource
+from bokeh.models import HoverTool
+
+
 
 # Import a CSV file into a Pandas DataFrame
 df = pd.read_csv("world-happiness-report-2021.csv")
@@ -33,6 +39,11 @@ def df_prep(path):
 # Looping, iterrows
 for index, row in df.iterrows():
     print(str(row["Regional indicator"]).split(',')[0])
+
+def main():
+    x = df("Ladder score")
+    if x > 5.53:
+     print("Above happiness average")
 
 # Merge DataFrames
 inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
@@ -89,6 +100,16 @@ sns.scatterplot(x="Social support", y="Ladder score", hue="Regional indicator", 
 plt.title("Happiness vs Social support", fontsize="15")
 plt.show()
 
+# Figure 4: Correlation Happiness vs GDP
+plt.figure(figsize=(15,20))
+sns.scatterplot(x="Logged GDP per capita", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110)
+plt.title("Happiness vs GDP per Capita", fontsize="15")
+plt.show()
+
+
+
+
 # Numpy to get mean/ median - No significant difference
 ladder = df["Ladder score"]
 np_ladder = np.array(ladder)
@@ -98,4 +119,23 @@ print(ladder_mean)
 print(ladder_median)
 
 
+# prepare some data
+from bokeh.plotting import figure, show
 
+Happiness = df["Ladder score"]
+Country = df["Country name"]
+GDP = df["Logged GDP per capita"]
+
+output_file('index.html')
+
+p = figure(y_range="Country", plot_width=800, plot_height=600, title='Happiness Observation (Country)', y_axis_label="Country", x_axis_label="Ladder score")
+p.hbar(
+    y=Country,
+    right=Happiness,
+    left=0,
+    height=0.4,
+    color="orange",
+    fill_alpha=0.5
+)
+
+show(p)
