@@ -120,24 +120,3 @@ print(ladder_mean)
 print(ladder_median)
 
 
-# prepare some data
-from bokeh.plotting import figure, output_file, show
-
-
-Happiness = df["Ladder score"]
-Country = df["Country name"]
-GDP = df["Logged GDP per capita"]
-
-output_file('index.html')
-
-p = figure(y_range="Country", plot_width=800, plot_height=600, title='Happiness Observation (Country)', y_axis_label="Country", x_axis_label="Ladder score")
-p.hbar(
-    y=Country,
-    right=Happiness,
-    left=0,
-    height=0.4,
-    color="orange",
-    fill_alpha=0.5
-)
-
-show(p)
