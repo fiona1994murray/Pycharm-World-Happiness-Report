@@ -9,8 +9,6 @@ print(df.head())
 df_past = pd.read_csv("world-happiness-report.past.csv")
 print(df_past.head())
 
-
-
 # Analysing data
 
 print(df.info())
@@ -45,13 +43,14 @@ print(df["Regional indicator"].value_counts())
 
 print(df.groupby('Regional indicator')['Ladder score'].mean().reset_index().sort_values('Ladder score'))
 
-print(df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita', 'Social support', 'Healthy life expectancy',
+Grouped_Metrics = df.groupby('Regional indicator')[['Ladder score', 'Logged GDP per capita', 'Social support', 'Healthy life expectancy',
                                   'Freedom to make life choices', 'Generosity',
-                                  'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score'))
+                                  'Perceptions of corruption']].mean().reset_index().sort_values('Ladder score')
+print(Grouped_Metrics)
 
 # Happiness by Region - Bar plot
 sns.set_color_codes("pastel")
-sns.barplot(x="Ladder score", y="Regional indicator", data=df, palette="rocket")
+sns.barplot(x="Ladder score", y="Regional indicator", hue="Regional indicator", data=Grouped_Metrics, palette="rocket")
 plt.title("Happiness by Region")
 plt.show()
 
@@ -60,8 +59,6 @@ plt.show()
 Top3 = {"Country name":["Finland", "Denmark", "Switzerland"], "Ladder score":[7.842, 7.620, 7.571]}
 Top_Ranking = pd.DataFrame(Top3)
 print(Top_Ranking)
-
-
 
 # Figure 1: Correlation Happiness vs Perceptions of corruption
 plt.figure(figsize=(15,20))
@@ -90,5 +87,3 @@ sns.scatterplot(x="Social support", y="Ladder score", hue="Regional indicator", 
             , alpha=.9, palette='rocket', s=110)
 plt.title("Happiness vs Social support", fontsize="15")
 plt.show()
-
-
