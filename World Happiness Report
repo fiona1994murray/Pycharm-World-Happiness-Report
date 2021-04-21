@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import bokeh
 from bokeh.io import output_file, show
 from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource
@@ -120,7 +121,8 @@ print(ladder_median)
 
 
 # prepare some data
-from bokeh.plotting import figure, show
+from bokeh.plotting import figure, output_file, show
+
 
 Happiness = df["Ladder score"]
 Country = df["Country name"]
