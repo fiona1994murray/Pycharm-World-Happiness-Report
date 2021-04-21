@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Import a CSV file into a Pandas DataFrame
 df = pd.read_csv("world-happiness-report-2021.csv")
@@ -9,7 +10,7 @@ print(df.head())
 df_past = pd.read_csv("world-happiness-report.past.csv")
 print(df_past.head())
 
-# Analysing data
+# Analysing data/ Cleaning data
 
 print(df.info())
 
@@ -87,3 +88,14 @@ sns.scatterplot(x="Social support", y="Ladder score", hue="Regional indicator", 
             , alpha=.9, palette='rocket', s=110)
 plt.title("Happiness vs Social support", fontsize="15")
 plt.show()
+
+# Numpy to get mean/ median - No significant difference
+ladder = df["Ladder score"]
+np_ladder = np.array(ladder)
+ladder_mean = np.mean(np_ladder)
+ladder_median = np.median(np_ladder)
+print(ladder_mean)
+print(ladder_median)
+
+
+
