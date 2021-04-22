@@ -10,6 +10,7 @@ from bokeh.models import HoverTool
 
 
 
+
 # Import a CSV file into a Pandas DataFrame
 df = pd.read_csv("world-happiness-report-2021.csv")
 print(df.head())
@@ -36,10 +37,25 @@ def df_prep(path):
     new_df.fillna("Unknown", inplace=True)
     print(new_df)
 
+# Numpy to get mean/ median - No significant difference
+ladder = df["Ladder score"]
+np_ladder = np.array(ladder)
+ladder_mean = np.mean(np_ladder)
+ladder_median = np.median(np_ladder)
+print(ladder_mean)
+print(ladder_median)
 
 # Looping, iterrows
 for index, row in df.iterrows():
     print(str(row["Regional indicator"]).split(',')[0])
+
+# Numpy to get mean/ median - No significant difference
+ladder = df["Ladder score"]
+np_ladder = np.array(ladder)
+ladder_mean = np.mean(np_ladder)
+ladder_median = np.median(np_ladder)
+print(ladder_mean)
+print(ladder_median)
 
 def main():
     x = df("Ladder score")
@@ -126,12 +142,16 @@ sns.scatterplot(x="Generosity", y="Ladder score", hue="Regional indicator", data
 plt.title("Happiness vs Generosity", fontsize="15")
 plt.show()
 
-# Numpy to get mean/ median - No significant difference
-ladder = df["Ladder score"]
-np_ladder = np.array(ladder)
-ladder_mean = np.mean(np_ladder)
-ladder_median = np.median(np_ladder)
-print(ladder_mean)
-print(ladder_median)
+# Bokeh plotting - Finland YoY
+x = [2016, 2017, 2018, 2019, 2020, 2021]
+y = [7.660, 7.788, 7.858, 7.780, 7.889, 7.842]
+
+p = figure(plot_width=400, plot_height=400)
+p.circle(x, y,
+         size=15, line_color="black", fill_color="orange", fill_alpha=0.5)
+show(p)
+
+
+
 
 
