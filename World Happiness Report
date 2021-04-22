@@ -150,8 +150,7 @@ p = figure(plot_width=400, plot_height=400)
 p.circle(x, y,
          size=15, line_color="black", fill_color="orange", fill_alpha=0.5)
 show(p)
-
-
+output_file("Finland.html")
 
 
 
