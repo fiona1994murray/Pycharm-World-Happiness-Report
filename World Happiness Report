@@ -50,6 +50,13 @@ def main():
 inner_merge = pd.merge(left=df, right=df_past, left_on="Country name", right_on="Country name")
 print(inner_merge)
 
+year = [2016, 2017, 2018, 2019, 2020, 2021]
+Finland_YoY = [7.660, 7.788, 7.858, 7.780, 7.889, 7.842]
+plt.title("Finland Happiness YoY")
+plt.plot(year, Finland_YoY)
+
+plt.show()
+
 # Regional Insights
 print(df.columns)
 print(df["Regional indicator"].value_counts())
@@ -63,7 +70,7 @@ print(Grouped_Metrics)
 
 # Happiness by Region - Bar plot
 sns.set_color_codes("pastel")
-sns.barplot(x="Ladder score", y="Regional indicator", hue="Regional indicator", data=Grouped_Metrics, palette="rocket")
+sns.barplot(x="Ladder score", y="Regional indicator", data=Grouped_Metrics, palette="rocket")
 plt.title("Happiness by Region")
 plt.show()
 
@@ -72,6 +79,10 @@ plt.show()
 Top3 = {"Country name":["Finland", "Denmark", "Switzerland"], "Ladder score":[7.842, 7.620, 7.571]}
 Top_Ranking = pd.DataFrame(Top3)
 print(Top_Ranking)
+
+sns.barplot(x="Ladder score", y="Country name", data=Top3, palette="rocket")
+plt.title("Top 3 Ranked Countries")
+plt.show()
 
 # Figure 1: Correlation Happiness vs Perceptions of corruption
 plt.figure(figsize=(15,20))
@@ -95,21 +106,25 @@ plt.title("Happiness vs Healthy Life Expectancy", fontsize="15")
 plt.show()
 
 # Figure 4: Correlation Happiness vs Social Support
-plt.figure(figsize=(15,20))
+plt.figure(figsize=(5,10))
 sns.scatterplot(x="Social support", y="Ladder score", hue="Regional indicator", data=df
             , alpha=.9, palette='rocket', s=110)
 plt.title("Happiness vs Social support", fontsize="15")
 plt.show()
 
-# Figure 4: Correlation Happiness vs GDP
+# Figure 5: Correlation Happiness vs GDP
 plt.figure(figsize=(15,20))
 sns.scatterplot(x="Logged GDP per capita", y="Ladder score", hue="Regional indicator", data=df
             , alpha=.9, palette='rocket', s=110)
 plt.title("Happiness vs GDP per Capita", fontsize="15")
 plt.show()
 
-
-
+# Figure 5: Correlation Happiness vs Generosity
+plt.figure(figsize=(15,20))
+sns.scatterplot(x="Generosity", y="Ladder score", hue="Regional indicator", data=df
+            , alpha=.9, palette='rocket', s=110)
+plt.title("Happiness vs Generosity", fontsize="15")
+plt.show()
 
 # Numpy to get mean/ median - No significant difference
 ladder = df["Ladder score"]
