@@ -143,14 +143,15 @@ plt.title("Happiness vs Generosity", fontsize="15")
 plt.show()
 
 # Bokeh plotting - Finland YoY
+output_file("Finland.html")
 x = [2016, 2017, 2018, 2019, 2020, 2021]
 y = [7.660, 7.788, 7.858, 7.780, 7.889, 7.842]
 
 p = figure(plot_width=400, plot_height=400)
 p.circle(x, y,
-         size=15, line_color="black", fill_color="orange", fill_alpha=0.5)
+         size=15, line_color="black", fill_color="red", fill_alpha=0.5)
 show(p)
-output_file("Finland.html")
+
 
 
 
